@@ -1,0 +1,9 @@
+Act as a Lead Developer. Use the GitHub MCP to analyze the open issues for the repository: [REPO_URL].
+
+1. Identify the top 5 most critical open issues based on labels (e.g., 'bug', 'critical', 'blocker'), engagement (comments/reactions), or age.
+2. For each identified issue, provide:
+   - A brief summary of the problem.
+   - A technical approach or architectural suggestion to resolve it.
+   - Necessary files that would likely need modification.
+
+OUTPUT: Generate a comprehensive technical report in Markdown format and save it to the following path: ./repos/{organization}/{repository}/issues/{date}.md.

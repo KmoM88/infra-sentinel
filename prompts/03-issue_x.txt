@@ -1,0 +1,7 @@
+Act as a Senior Engineer. Analyze the specific GitHub issue at this URL: [ISSUE_URL].
+
+1. Use the GitHub MCP to read the full issue description and the recent comment history to understand the current state of the discussion.
+2. Perform a codebase search to identify the specific lines of code or modules causing the reported behavior.
+3. Outline a step-by-step technical approach to resolve the issue, including potential edge cases to consider and testing strategies.
+
+OUTPUT: Save this technical resolution plan as a Markdown file at: [FILE_PATH_X].

@@ -1,0 +1,7 @@
+Act as a Release Manager. Use the GitHub MCP to audit the open Pull Requests for the repository: [REPO_URL].
+
+1. Categorize open PRs into 'Ready for Review', 'Work in Progress (Drafts)', and 'Stale/Needs Attention'.
+2. Identify the 3 most complex PRs based on the number of files changed or lines added/deleted.
+3. For these complex PRs, summarize the proposed changes and highlight any potential risks to the main branch stability or breaking changes.
+
+OUTPUT: Compile this audit into a Markdown report and save it to: ./repos/{organization}/{repository}/prs/{date}.md.

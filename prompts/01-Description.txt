@@ -1,0 +1,33 @@
+Act as an expert Senior Software Architect. Your task is to perform a deep technical analysis of a GitHub repository using the provided URL and an input Markdown file as context.
+
+### 1. Repository Discovery & Branching Logic
+- Identify the primary branch. If the primary branch is NOT 'main' or 'master', analyze the branch list and the provided MD file to infer the branching strategy (e.g., GitFlow, environment-based branches like 'dev/stg/prod').
+
+### 2. Core Purpose & Architecture
+- Summarize the technical purpose of the repository. What problem does it solve and what is its high-level architecture?
+
+### 3. Consumption (Inputs)
+- Identify all dependencies, including:
+  - External libraries/frameworks (check package.json, requirements.txt, go.mod, etc.).
+  - Other repositories or submodules referenced.
+  - Required APIs or external services.
+
+### 4. Production (Outputs)
+- Determine what this repository produces:
+  - Does it deploy packages (NPM, PyPI, Docker images)?
+  - Does it result in a compiled binary or a served web application?
+
+### 5. CI/CD Pipeline Analysis
+- Locate and describe the CI/CD infrastructure:
+  - **GitHub Actions:** Identify workflows in `.github/workflows/` and their triggers.
+  - **Jenkins:** Search for `Jenkinsfile` or related groovy scripts. Specify their location and what stages they automate.
+
+### 6. Standalone Usage Guide
+- Provide a brief "Quick Start" guide. How can a developer run or use this repository locally/standalone? Include key commands (e.g., install, build, run).
+
+---
+INPUT DATA:
+- Repository URL: [INSERT_URL_HERE]
+- Save a description Markdown File in the path: ./repos/{oranization}/{repository}/description.md
+
+Use your GitHub MCP tools to explore the file tree and content before providing the final report.
