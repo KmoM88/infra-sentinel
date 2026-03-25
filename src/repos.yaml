@@ -1,20 +1,12 @@
 base_path: /home/fede/github
 
 repos:
-  - eProsima/Fast-CDR
-  - eProsima/Fast-DDS
-  - eProsima/foonathan_memory_vendor
-  - eclipse-cyclonedds/cyclonedds
-  - eclipse-iceoryx/iceoryx
-  - gazebo-release/gz_cmake_vendor
-  - gazebo-release/gz_math_vendor
-  - gazebo-release/gz_utils_vendor
   - ament/ament_cmake
   - ament/ament_index
   - ament/ament_lint
   - ament/ament_package
-  - ament/google_benchmark_vendor
   - ament/googletest
+  - ament/google_benchmark_vendor
   - ament/uncrustify_vendor
   - colcon/.github
   - colcon/ci
@@ -45,6 +37,14 @@ repos:
   - colcon/colcon-sanitizer-reports
   - colcon/colcon-spawn-shell
   - colcon/template-package
+  - eclipse-cyclonedds/cyclonedds
+  - eclipse-iceoryx/iceoryx
+  - eProsima/Fast-CDR
+  - eProsima/Fast-DDS
+  - eProsima/foonathan_memory_vendor
+  - gazebo-release/gz_cmake_vendor
+  - gazebo-release/gz_math_vendor
+  - gazebo-release/gz_utils_vendor
   - osrf/buildfarm-tools
   - osrf/docker_images
   - osrf/homebrew-simulation
@@ -201,3 +201,4 @@ repos:
   - ros2/urdf
   - ros2/variants
   - ros2/yaml_cpp_vendor
+  - ros2-gbp/ros2-gbp-github-org

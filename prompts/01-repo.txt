@@ -27,7 +27,7 @@ Act as an expert Senior Software Architect. Your task is to perform a deep techn
 
 ---
 INPUT DATA:
-- Repository URL: [INSERT_URL_HERE]
-- Save a description Markdown File in the path: ./repos/{oranization}/{repository}/description.md
+- Github org/repo: [INSERT_URL_HERE]
+- Save a description Markdown File in the path: ./repos/{organization}/{repository}/description.md
 
 Use your GitHub MCP tools to explore the file tree and content before providing the final report.

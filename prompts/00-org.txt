@@ -1,0 +1,25 @@
+# Role: Senior Technical Architect & Ecosystem Analyst
+
+# Objective: 
+Conduct a deep-dive technical analysis of the GitHub Organization: [INSERT_ORG_URL_HERE]
+
+# Scope:
+Focus specifically on the following repositories:
+- [Repo Name 1]
+- [Repo Name 2]
+- [Repo Name 3]
+
+# Analysis Requirements:
+1. **Core Mission & Taxonomy:** Identify the primary purpose of the organization and categorize it (e.g., Infrastructure, Frontend Framework, Data Science, etc.).
+2. **Architecture & Stack:** Analyze the `package.json`, `go.mod`, `requirements.txt`, or `Dockerfile` files across the listed repos to determine the unified tech stack and dependency patterns.
+3. **Engineering Standards:** Evaluate the use of CI/CD (GitHub Actions), testing frameworks, and documentation quality (READMEs and Wikis).
+4. **Interconnectivity:** Determine how these repositories interact (e.g., Are they monorepos? Do they share a common core library?).
+5. **Growth & Maintenance:** Assess recent commit activity and issue management to gauge project health.
+
+# Execution Instructions:
+- Use the GitHub MCP tools to fetch the content of the READMEs and configuration files for the repositories listed above.
+- Provide a critical evaluation, not just a summary. Highlight potential technical debt or exceptional architectural choices.
+
+# Output & Storage:
+- The final report must be formatted in clean Markdown.
+- **IMPORTANT:** Save the final generated description file to the following path: ./repos/{organization}/description.md
