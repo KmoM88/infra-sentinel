@@ -1,4 +1,4 @@
-Act as a Lead Developer. Use the GitHub MCP to analyze the open issues for the repository: [REPO_URL].
+Act as a Lead Developer. Use the GitHub MCP to analyze the open issues for a repository.
 
 1. Identify the top 5 most critical open issues based on labels (e.g., 'bug', 'critical', 'blocker'), engagement (comments/reactions), or age.
 2. For each identified issue, provide:
@@ -6,4 +6,5 @@ Act as a Lead Developer. Use the GitHub MCP to analyze the open issues for the r
    - A technical approach or architectural suggestion to resolve it.
    - Necessary files that would likely need modification.
 
+INPUT: [REPO_URL]
 OUTPUT: Generate a comprehensive technical report in Markdown format and save it to the following path: ./repos/{organization}/{repository}/issues/{date}.md.

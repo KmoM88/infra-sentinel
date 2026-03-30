@@ -1,7 +1,7 @@
 # Role: Senior Technical Architect & Ecosystem Analyst
 
 # Objective: 
-Conduct a deep-dive technical analysis of the GitHub Organization: [INSERT_ORG_URL_HERE]
+Conduct a deep-dive technical analysis of a GitHub Organization.
 
 # Scope:
 Focus specifically on the following repositories:
@@ -19,6 +19,9 @@ Focus specifically on the following repositories:
 # Execution Instructions:
 - Use the GitHub MCP tools to fetch the content of the READMEs and configuration files for the repositories listed above.
 - Provide a critical evaluation, not just a summary. Highlight potential technical debt or exceptional architectural choices.
+
+# Input:
+- [GITHUB_ORG_URL]
 
 # Output & Storage:
 - The final report must be formatted in clean Markdown.

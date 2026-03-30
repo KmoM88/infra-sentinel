@@ -2,70 +2,69 @@
 
 ## 1. Repository Discovery & Branching Logic
 
-The primary branch of this repository is `master`. The branching strategy appears to be a feature-based workflow, with numerous branches named after features, fixes, or specific users. Additionally, there are branches named after Linux distributions (e.g., `focal`), which likely contain configurations specific to those releases.
+- **Primary Branch:** `master`
+- **Branching Strategy:** The repository follows a standard Git workflow. A `master` branch serves as the primary line of development, with various feature and hotfix branches being created as needed. There is no evidence of a more complex branching model like GitFlow.
 
 ## 2. Core Purpose & Architecture
 
-This repository contains a suite of Python scripts and configuration files designed to manage the ROS Debian package repositories. Its core purpose is to automate the process of mirroring upstream Debian/Ubuntu repositories, filtering specific packages, importing them into a local `aptly` repository, creating versioned snapshots, and publishing them for consumption by end-users.
+The `ros-infrastructure/reprepro-updater` repository provides a set of Python scripts for creating, updating, and managing Debian package repositories. Its primary purpose is to automate the management of the ROS (Robot Operating System) package repositories.
 
-The architecture is script-based rather than a formal Python package. The main logic is encapsulated in Python scripts that wrap and orchestrate command-line tools, primarily `aptly` and `gpg`. The system is configured through YAML files that define the upstream sources, filtering rules, and target distributions.
+The architecture is script-based, designed to be executed in a specific server environment (`repos.ros.org`). It uses `reprepro` and `aptly` as the underlying tools for Debian repository management. The scripts are configured via YAML files.
 
 ## 3. Consumption (Inputs)
 
-The toolchain has the following dependencies:
+The repository consumes the following:
 
--   **System-level Tools:**
-    -   `aptly`: The core tool for managing Debian repositories.
-    -   `gnupg`: Used for signing and key management.
-    -   `python3`
--   **Python Libraries:**
-    -   `PyYAML`: Used for parsing the YAML configuration files. The dependency is implicit and can be seen in the `import yaml` statement in the scripts.
--   **Configuration Files:** The behavior of the scripts is heavily driven by `.yaml` files located in the `config` directory. These files specify what packages to import from where.
+- **External Libraries/Frameworks:**
+  - **Python:** `PyYAML`
+  - **System-level (Debian packages):** `aptly`, `gpg`, `ubuntu-keyring`
+
+- **Other Repositories or Submodules:** None were identified.
+
+- **Required APIs or External Services:**
+  - The scripts interact with external Debian package repositories (PPAs) to import packages.
+  - They rely on the local filesystem for storing repository data and configuration.
 
 ## 4. Production (Outputs)
 
-This repository does not produce a distributable package (like a PyPI package or a Debian package). Its "product" is the set of scripts and configurations themselves, which are intended to be run directly on the ROS build farm infrastructure to manage and update the `packages.ros.org` APT repository.
+This repository does not produce any single artifact like a binary or a package. Instead, its "production" is the management of a complete Debian package repository. The scripts handle the importing, updating, and organization of `.deb` packages within the repository structure.
 
 ## 5. CI/CD Pipeline Analysis
 
-The repository uses GitHub Actions for its CI/CD pipeline.
-
--   **Workflow File:** `.github/workflows/ci.yml`
--   **Triggers:** The workflow is triggered on:
-    -   `push` to the `master` and `refactor` branches.
-    -   `pull_request` targeting any branch.
--   **Pipeline Stages:** The CI job runs on an `ubuntu-22.04` container and performs the following key steps:
-    1.  **Setup:** It installs the necessary software, including `aptly`, `python3`, and `gpg`.
-    2.  **Key Management:** It sets up a GPG environment with the necessary keys for package signing and verification.
-    3.  **Testing (on Push):** For push events, it runs a dedicated test suite (`scripts/aptly/aptly_importer_TEST.py`), which appears to perform a full, destructive test of the import process.
-    4.  **Validation (on Pull Request):** For pull request events, the CI identifies which `config/*.yaml` files have been changed and runs the main `aptly_importer.py` script against them with the `--only-mirror-creation` flag. This serves as a validation step to ensure that new or modified configurations are syntactically correct and can be processed by the tool.
+- **Infrastructure:** The project uses **GitHub Actions** for its CI/CD pipeline.
+- **Workflow File:** The main workflow is defined in `.github/workflows/ci.yml`.
+- **Triggers:** The workflow is triggered by:
+  - `push` to the `master` and `refactor` branches.
+  - `pull_request` to any branch.
+- **Pipeline Stages:**
+  1. **Setup:** The CI job runs on an `ubuntu-22.04` environment.
+  2. **Install Dependencies:** It installs `aptly`, `gpg`, `python3`, and `ubuntu-keyring` using `apt-get`.
+  3. **Testing:**
+     - For pull requests, the pipeline checks for changes in `config/*.yaml` files and validates them using the `scripts/aptly/aptly_importer.py` script.
+     - For pushes to `master` and `refactor`, it executes a test suite located at `scripts/aptly/aptly_importer_TEST.py`.
 
 ## 6. Standalone Usage Guide
 
-This repository is not intended for general standalone use but is a specialized tool for ROS infrastructure management. However, a developer contributing to it or setting up a similar system would follow a workflow like this:
+The `README` provides a "Quick Start" guide for using the scripts. The primary use case is for managing the ROS package repositories on a dedicated server.
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/ros-infrastructure/reprepro-updater.git
-    cd reprepro-updater
-    ```
+### Key Commands:
 
-2.  **Install Dependencies:**
-    Ensure `aptly`, `python3`, `python3-yaml`, and `gnupg` are installed on the system.
-    ```bash
-    sudo apt-get update
-    sudo apt-get install aptly python3-yaml gnupg
-    ```
+- **Creating a new repository:**
+  ```bash
+  python /home/rosbuild/reprepro_updater/scripts/setup_repo.py /var/www/repos/ros_bootstrap/ -c
+  ```
 
-3.  **Configure:**
-    Create or modify a YAML file in the `config/` directory to define the import rules for a new set of packages.
-
-4.  **Run the scripts:**
-    Execute the Python scripts to perform the repository management tasks, as described in the `README` file. For example, to test a new configuration file:
-    ```bash
-    python3 scripts/aptly/aptly_importer.py --ignore-signatures --only-mirror-creation config/my-new-config.yaml
-    ```
-    To perform a full import, snapshot, and publish:
-    ```bash
-    python3 scripts/aptly/aptly_importer.py --snapshot-and-publish config/my-new-config.yaml
-    ```
+- **Importing packages from a PPA:**
+  1. Setup the environment:
+     ```bash
+     cd ~/reprepro_updater
+     . setup.sh
+     ```
+  2. Perform a dry run to see the expected changes:
+     ```bash
+     python scripts/prepare_sync.py /var/www/repos/ros_bootstrap -y <CONFIG_FILE_WITH_IMPORT_RULE> > tmplog
+     ```
+  3. Run the import with the commit flag:
+     ```bash
+     python scripts/prepare_sync.py /var/www/repos/ros_bootstrap -y <CONFIG_FILE_WITH_IMPORT_RULE> -c
+     ```

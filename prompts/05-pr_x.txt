@@ -1,30 +1,37 @@
-Act as a Senior Code Reviewer. Analyze the GitHub Pull Request at this URL: [PR_URL].
+Act as a Senior Lead Engineer and Security Auditor. Your mission is to conduct an intensive, 360-degree technical review of a Pull Request.
 
-### 1. Contextual Analysis
-- Use the GitHub MCP to examine the PR description, the diff, and the specific files changed.
-- Cross-reference the changes with the existing codebase to ensure architectural consistency.
+### 1. Contextual & Traceability Analysis
+- **Strategic Intent:** Analyze the PR description, the diff, and the commit history. Cross-reference all linked resources (GitHub Issues, Jira tickets, or related PRs). 
+- **Architectural Impact:** Evaluate how these changes align with the existing codebase. Identify if this introduces technical debt or breaks established patterns.
+- **Documentation Sync:** Check if the code comments align with or contradict the external documentation found in the linked issues.
 
-### 2. Technical Evaluation
-- Evaluate the code against industry best practices:
-  - **Efficiency & Readability:** Is the logic optimized? Is the naming intent-based?
-  - **Security:** Are there new vulnerabilities, exposed secrets, or unsanitized inputs?
-  - **Reliability:** Look for logic errors, edge cases, or missing unit/integration tests for new features.
+### 2. Validation & Reproduction Lab (The "Hands-On" Test)
+Provide a specific guide to validate this change locally:
+- **Baseline vs. Branch:** Provide CLI commands to:
+    a) Run the current 'main' version to observe the "before" state.
+    b) Checkout and run the PR branch to verify the "after" state.
+- **Edge Case Suite:** Suggest 3-5 specific test cases (boundary values, null inputs, or race conditions) that I should manually trigger to try and break this new logic.
 
-### 3. Critical Inquiries & Proactive Improvements
-- Generate **3 to 4 specific inquiries or suggestions** for the author. 
-- These should either:
-  - **Clarify Intent:** Ask about specific implementation choices where the logic isn't self-explanatory.
-  - **Reference Code:** Suggest a specific refactor or pattern (e.g., "In file X, line Y, consider using a Strategy Pattern instead of this switch statement to improve extensibility").
-  - **Future-Proofing:** Suggest improvements that aren't strictly required for this fix but would improve the overall health of the module.
+### 3. Intensive Technical Evaluation
+Audit the code against the following pillars:
+- **Efficiency & Security:** Identify logic bottlenecks, potential OWASP vulnerabilities, exposed secrets, or unsanitized inputs.
+- **Reliability:** Flag missing unit/integration tests for new logic and look for "silent failures" in error handling.
+- **Readability:** Evaluate if naming is intent-based and if the code follows DRY/SOLID principles.
 
-### 4. Recommendation
-- Provide a clear 'Approve', 'Comment', or 'Request Changes' status.
-- Summarize the "Must-Fix" items versus "Nice-to-Have" suggestions.
+### 4. Critical Inquiries & Proactive Comments
+Generate two types of feedback:
+- **Clarification Questions:** 3-4 specific inquiries for the author regarding implementation choices that aren't self-explanatory.
+- **Direct Comments:** Provide "ready-to-paste" Markdown comments for specific files/lines (e.g., "In file X, line Y, consider using a Strategy Pattern here to improve extensibility").
 
-### 5. Approval Justification & Positive Impact
-- If the Pull Request meets all quality standards and is ready to be merged, provide a Positive Summary:
-    - Success Factors: Briefly highlight 1 or 2 specific technical implementations that were exceptionally well handled (e.g., clean error handling, efficient use of a library, or excellent test coverage).
-    - Downstream Benefits: Mention how this change improves the codebase overall (e.g., "This refactor significantly reduces technical debt in the Auth module").
-    - Risk Assessment: Explicitly state that the changes have a low risk of regression based on your analysis of the diff and existing CI/CD guards.
+### 5. Final Verdict & Justification
+Provide a clear status: **[APPROVE / COMMENT / REQUEST CHANGES / REJECT]**.
+- **Must-Fix vs. Nice-to-Have:** Categorize your feedback so the author knows what is a blocker.
+- **Success Factors:** If approving, highlight 1-2 exceptionally well-handled implementations.
+- **Risk Assessment:** Explicitly state the regression risk level (Low/Med/High) based on the diff and existing CI/CD guards.
 
-OUTPUT: Save the complete code review as a Markdown file at: ./repos/{organization}/{repository}/prs/pr{PR_number}-{date}.md.
+### INPUT: [PR_URL]
+
+### OUTPUT INSTRUCTIONS:
+- Format the entire report in clean, professional Markdown.
+- Save the produced report as a .md file at this specific path: ./repos/{{organization}}/{{repository}}/prs/pr{{PR_number}}-{{date}}.md
+- Use an objective, critical, yet constructive tone.

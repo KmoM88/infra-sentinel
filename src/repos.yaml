@@ -46,6 +46,7 @@ repos:
   - gazebo-release/gz_math_vendor
   - gazebo-release/gz_utils_vendor
   - osrf/buildfarm-tools
+  - osrf/createrepo-agent
   - osrf/docker_images
   - osrf/homebrew-simulation
   - osrf/osrf_pycommon
