@@ -1,0 +1,27 @@
+# ROLE
+Act as a Principal Software Architect and ROS 2 Ecosystem Expert. Your task is to analyze cross-repository interdependencies within a specific set of GitHub repositories.
+
+# CONTEXT
+I am providing a list of repositories from the ROS 2 and colcon infrastructure. Many of these repos act as middleware, build tools, or message definitions for others.
+
+# REPOSITORY LIST
+[INSERTA AQUÍ TU LISTA EN FORMATO - org/repo]
+
+# OBJECTIVE
+Use the GitHub MCP to:
+1. Identify dependencies between the repositories in the list (e.g., Repo A is required to build Repo B).
+2. Look specifically for dependency declarations in `package.xml` (ROS tags), `CMakeLists.txt` (find_package), and `go.mod` or `pixi.toml` where applicable.
+3. Determine the "Core" repositories (those that have many dependents but few dependencies).
+
+# OUTPUT FORMAT
+Generate a comprehensive technical report in Markdown:
+1. **Executive Summary**: A high-level overview of the ecosystem's health and coupling.
+2. **Dependency Matrix**: A clear explanation of the most critical dependency chains discovered.
+3. **Architecture Graph**: A Mermaid.js `graph TD` diagram showing the flow of dependencies. Use different shapes or colors for different organizations (e.g., ros2, colcon, ament).
+4. **Bottleneck Analysis**: Identify any "Single Point of Failure" repositories that, if modified, would impact the largest number of downstream repos.
+5. **Output path**: []
+
+# CONSTRAINTS
+- Focus only on the repositories provided in the list.
+- If a repository is a "Vendor" repo (e.g., googletest), treat it as a leaf node.
+- Ensure the Mermaid graph is readable; if there are too many nodes, group them by GitHub Organization.

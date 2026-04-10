@@ -12,4 +12,4 @@ Return the entire analysis in a clean, well-structured Markdown format. Use prof
 **Inputs**:
 - Github organization and repository name: [INSERT_URL_HERE]
 - Path to Analyze: [INSERT_PATH_HERE]
-- Output Destination (Local Path): ./{organization}/{repository}/{}analysis.md
+- Output Destination (Local Path): ./{organization}/{repository}/{path_or_functionality}-analysis.md

@@ -5,25 +5,31 @@ Act as a Senior Lead Engineer and Security Auditor. Your mission is to conduct a
 - **Architectural Impact:** Evaluate how these changes align with the existing codebase. Identify if this introduces technical debt or breaks established patterns.
 - **Documentation Sync:** Check if the code comments align with or contradict the external documentation found in the linked issues.
 
-### 2. Validation & Reproduction Lab (The "Hands-On" Test)
+### 2. Execution Flow & Component Interaction (The "Under the Hood" Walkthrough)
+Assume the reviewer has deep technical knowledge but zero familiarity with this specific repository's architecture. Map out the exact execution flow of the new feature or fix:
+- **Component Topology:** Identify the core modified files and the critical unchanged files they interact with to form the complete feature/fix flow.
+- **Step-by-Step Walkthrough:** Map the chronological execution path. Describe how components interact sequentially (e.g., "1. Entry point A receives the payload -> 2. Controller B validates it -> 3. The newly modified Service C applies the fix...").
+- **Data & State Mutations:** Briefly explain how the data payload or application state is transformed or mutated as it moves through this specific chain.
+
+### 3. Validation & Reproduction Lab (The "Hands-On" Test)
 Provide a specific guide to validate this change locally:
 - **Baseline vs. Branch:** Provide CLI commands to:
     a) Run the current 'main' version to observe the "before" state.
     b) Checkout and run the PR branch to verify the "after" state.
 - **Edge Case Suite:** Suggest 3-5 specific test cases (boundary values, null inputs, or race conditions) that I should manually trigger to try and break this new logic.
 
-### 3. Intensive Technical Evaluation
+### 4. Intensive Technical Evaluation
 Audit the code against the following pillars:
 - **Efficiency & Security:** Identify logic bottlenecks, potential OWASP vulnerabilities, exposed secrets, or unsanitized inputs.
 - **Reliability:** Flag missing unit/integration tests for new logic and look for "silent failures" in error handling.
 - **Readability:** Evaluate if naming is intent-based and if the code follows DRY/SOLID principles.
 
-### 4. Critical Inquiries & Proactive Comments
+### 5. Critical Inquiries & Proactive Comments
 Generate two types of feedback:
 - **Clarification Questions:** 3-4 specific inquiries for the author regarding implementation choices that aren't self-explanatory.
 - **Direct Comments:** Provide "ready-to-paste" Markdown comments for specific files/lines (e.g., "In file X, line Y, consider using a Strategy Pattern here to improve extensibility").
 
-### 5. Final Verdict & Justification
+### 6. Final Verdict & Justification
 Provide a clear status: **[APPROVE / COMMENT / REQUEST CHANGES / REJECT]**.
 - **Must-Fix vs. Nice-to-Have:** Categorize your feedback so the author knows what is a blocker.
 - **Success Factors:** If approving, highlight 1-2 exceptionally well-handled implementations.
