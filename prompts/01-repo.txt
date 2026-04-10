@@ -25,6 +25,11 @@ Act as an expert Senior Software Architect. Your task is to perform a deep techn
 ### 6. Standalone Usage Guide
 - Provide a brief "Quick Start" guide. How can a developer run or use this repository locally/standalone? Include key commands (e.g., install, build, run).
 
+### 7. Execution Flow Walkthrough
+- Provide a highly detailed, step-by-step walkthrough of the repository's primary execution path or typical use case (e.g., a request lifecycle, data processing pipeline, or core user journey).
+- Explicitly trace the path from the entry point to the final output, referencing specific repository elements along the way.
+- You MUST include exact file paths, core class names, key functions, and internal modules involved at each step to demonstrate exactly how control and data flow through the codebase.
+
 ---
 INPUT DATA:
 - Github org/repo: [GITHUB_REPO_URL]
