@@ -15,21 +15,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: ubuntu
-            os_version: noble
-            ros2_version: kilted
-          - os: ubuntu
-            os_version: noble
-            ros2_version: jazzy
-          - os: ubuntu
-            os_version: noble
-            ros2_version: rolling
-          - os: ubuntu
-            os_version: jammy
-            ros2_version: humble
+        ros2_version: [kilted, jazzy, rolling, humble]
         arch: [amd64, arm64]
         type: [pkg]
+        os: [ubuntu]
+
+        include:
+          - ros2_version: kilted
+            os_version: noble
+          - ros2_version: jazzy
+            os_version: noble
+          - ros2_version: rolling
+            os_version: noble
+          - ros2_version: humble
+            os_version: jammy
         
 
     runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm64' || 'ubuntu-latest' }}
