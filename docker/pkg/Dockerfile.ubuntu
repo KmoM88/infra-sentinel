@@ -2,7 +2,8 @@ ARG BASE_IMAGE_VERSION=jammy
 FROM ubuntu:${BASE_IMAGE_VERSION}
 
 ARG ROS2_VERSION=kilted
-ARG DEBIAN_FRONTEND=noninteractive
+ENV ROS2_VERSION=${ROS2_VERSION}
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install locales -y \
 && locale-gen en_US en_US.UTF-8 \
 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
