@@ -118,7 +118,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            IMAGE_BASE=ghcr.io/${{ github.repository }}/ros2-ubuntu-base:${{ matrix.os_version }}-${{ matrix.arch }}
+            IMAGE_BASE=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.source'] }}-base:${{ matrix.os_version }}-${{ matrix.arch }}
             ROS2_VERSION=${{ matrix.ros2_version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
