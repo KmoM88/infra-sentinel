@@ -11,7 +11,7 @@ permissions:
   packages: write
 
 jobs:
-  build-and-push:
+  build-and-push-ubuntu:
     strategy:
       fail-fast: false
       matrix:
@@ -19,54 +19,21 @@ jobs:
           - os: ubuntu
             os_version: noble
             ros2_version: kilted
-            type: pkg
-            arch: amd64
-            runner: ubuntu-latest
           - os: ubuntu
             os_version: noble
             ros2_version: jazzy
-            type: pkg
-            arch: amd64
-            runner: ubuntu-latest
           - os: ubuntu
             os_version: noble
             ros2_version: rolling
-            type: pkg
-            arch: amd64
-            runner: ubuntu-latest
           - os: ubuntu
             os_version: jammy
             ros2_version: humble
-            type: pkg
-            arch: amd64
-            runner: ubuntu-latest
-          - os: ubuntu
-            os_version: noble
-            ros2_version: kilted
-            type: pkg
-            arch: arm64
-            runner: ubuntu-latest
-          - os: ubuntu
-            os_version: noble
-            ros2_version: jazzy
-            type: pkg
-            arch: arm64
-            runner: ubuntu-latest
-          - os: ubuntu
-            os_version: noble
-            ros2_version: rolling
-            type: pkg
-            arch: arm64
-            runner: ubuntu-latest
-          - os: ubuntu
-            os_version: jammy
-            ros2_version: humble
-            type: pkg
-            arch: arm64
-            runner: ubuntu-latest
+        arch: [amd64, arm64]
+        type: [pkg]
+        
 
-    runs-on: ${{ matrix.runner }}
-    name: Build ${{ matrix.os }}/${{ matrix.os_version }} from ${{ matrix.type }} | ${{ matrix.ros2_version }} (${{ matrix.arch }})
+    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm64' || 'ubuntu-latest' }}
+    name: Build ${{ matrix.os }}:${{ matrix.os_version }} from ${{ matrix.type }} | ${{ matrix.ros2_version }} (${{ matrix.arch }})
 
     steps:
       - name: Checkout repository
