@@ -28,6 +28,12 @@ jobs:
             type: pkg
             arch: amd64
             runner: ubuntu-latest
+          - os: ubuntu
+            os_version: noble
+            ros2_version: rolling
+            type: pkg
+            arch: amd64
+            runner: ubuntu-latest
           # - os: ubuntu
           #   os_version: jammy
           #   ros2_version: humble
