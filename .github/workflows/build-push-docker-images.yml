@@ -29,9 +29,9 @@ jobs:
             os_version: noble
           - ros2_version: humble
             os_version: jammy
-        
 
     runs-on: 'ubuntu-latest'
+    environment: Manual-approval
     name: Build ${{ matrix.os }}:${{ matrix.os_version }} from ${{ matrix.type }} | ${{ matrix.ros2_version }} (${{ matrix.arch }})
 
     steps:
