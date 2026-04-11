@@ -2,8 +2,6 @@
 
 set -e
 
-ROS2_VERSION="kilted"
-
 apt-get update && apt-get install -y \
     python3-flake8-blind-except \
     python3-flake8-class-newline \
