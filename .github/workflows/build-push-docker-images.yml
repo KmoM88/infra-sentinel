@@ -16,11 +16,10 @@ jobs:
       fail-fast: false
       matrix:
         arch: [amd64, arm64]
-        os: [ubuntu]
-        os_version: [noble, jammy]
+        os_version: [noble, jammy, focal]
 
     runs-on: 'ubuntu-latest'
-    name: Build base image ${{ matrix.os }}:${{ matrix.os_version }} (${{ matrix.arch }})
+    name: Build base image ubuntu:${{ matrix.os_version }} (${{ matrix.arch }})
 
     steps:
       - name: Checkout repository
@@ -43,14 +42,14 @@ jobs:
         id: meta
         uses: docker/metadata-action@v6.0.0
         with:
-          images: ghcr.io/${{ github.repository_owner }}/${{ github.repository }}/ROS2-${{ matrix.os }}
+          images: ghcr.io/${{ github.repository_owner }}/${{ github.repository }}/ros2-ubuntu
           tags: type=raw,value=${{ matrix.os_version }}-${{ matrix.arch }}
 
       - name: Build and publish Docker image
         uses: docker/build-push-action@v7.1.0
         with:
           context: .
-          file: ./docker/base/Dockerfile.${{ matrix.os }}
+          file: ./docker/base/Dockerfile.ubuntu
           push: true
           platforms: linux/${{ matrix.arch }}
           tags: ${{ steps.meta.outputs.tags }}
