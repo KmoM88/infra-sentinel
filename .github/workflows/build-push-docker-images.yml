@@ -31,7 +31,7 @@ jobs:
             os_version: jammy
         
 
-    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm64' || 'ubuntu-latest' }}
+    runs-on: 'ubuntu-latest'
     name: Build ${{ matrix.os }}:${{ matrix.os_version }} from ${{ matrix.type }} | ${{ matrix.ros2_version }} (${{ matrix.arch }})
 
     steps:
