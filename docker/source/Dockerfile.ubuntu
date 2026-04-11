@@ -40,7 +40,7 @@ RUN apt-get upgrade -y
 
 RUN rosdep init \
     && rosdep update \
-    rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-7.3.0 urdfdom_headers"
+    && rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-7.3.0 urdfdom_headers"
 
 RUN colcon build --symlink-install
 
