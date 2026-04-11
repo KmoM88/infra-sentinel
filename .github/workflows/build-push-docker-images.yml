@@ -57,7 +57,7 @@ jobs:
 
     steps:
       - name: Checkout del repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # - name: Configurar QEMU para compilaciones multi-arquitectura
       #   uses: docker/setup-qemu-action@v3
