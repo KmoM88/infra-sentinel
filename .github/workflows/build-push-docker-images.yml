@@ -40,21 +40,6 @@ jobs:
             type: pkg
             arch: amd64
             runner: ubuntu-latest
-          # - os: ubuntu
-          #   os_version: jammy
-          #   ros2_version: humble
-          #   arch: amd64
-          #   runner: ubuntu-latest
-          # - os: ubuntu
-          #   os_version: jammy
-          #   ros2_version: iron
-          #   arch: amd64
-          #   runner: ubuntu-latest
-          # - os: ubuntu
-          #   os_version: jammy
-          #   ros2_version: humble
-          #   arch: arm64
-          #   runner: ubuntu-latest
 
     runs-on: ${{ matrix.runner }}
     name: Build ${{ matrix.os }}/${{ matrix.os_version }} from ${{ matrix.type }} | ${{ matrix.ros2_version }} (${{ matrix.arch }})
