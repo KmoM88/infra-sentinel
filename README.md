@@ -1,2 +1,2 @@
 # infra-sentinel
-Agentic sentinel for ROS infrastructure and repositories
+Tests on ROS2 and their infra definitions
