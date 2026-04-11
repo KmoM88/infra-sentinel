@@ -38,11 +38,13 @@ RUN mkdir -p ~/ros_${ROS2_VERSION}/src \
 
 RUN apt-get upgrade -y
 
-RUN rosdep init \
+RUN cd ~/ros_${ROS2_VERSION} \
+    && rosdep init \
     && rosdep update \
     && rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-7.3.0 urdfdom_headers"
 
-RUN colcon build --symlink-install
+RUN cd ~/ros_${ROS2_VERSION} \
+    && colcon build --symlink-install
 
 RUN echo "source /opt/ros/${ROS2_VERSION}/setup.bash" >> /etc/bash.bashrc
 
