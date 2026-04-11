@@ -31,7 +31,7 @@ jobs:
             os_version: jammy
 
     runs-on: 'ubuntu-latest'
-    name: Build ${{ matrix.os }}:${{ matrix.os_version }} from ${{ matrix.type }} | ${{ matrix.ros2_version }} (${{ matrix.arch }})
+    name: Build ${{ matrix.ros2_version }} in ${{ matrix.os }}:${{ matrix.os_version }} from ${{ matrix.type }} (${{ matrix.arch }})
 
     steps:
       - name: Checkout repository
