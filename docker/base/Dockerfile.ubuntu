@@ -4,8 +4,7 @@ FROM ubuntu:${BASE_IMAGE_VERSION}
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install locales -y \
 && locale-gen en_US en_US.UTF-8 \
-&& update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
-&& export LANG=en_US.UTF-8
+&& update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 RUN apt-get install software-properties-common -y \
 && add-apt-repository -y universe 
