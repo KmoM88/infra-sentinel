@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         arch: [amd64]
-        os_version: [noble, jammy, focal]
+        os_version: [noble, jammy]
 
     runs-on: 'ubuntu-latest'
     name: Build base image ubuntu:${{ matrix.os_version }} (${{ matrix.arch }})
@@ -42,7 +42,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v6.0.0
         with:
-          images: ghcr.io/${{ github.repository }}/ros2-ubuntu-base
+          images: ghcr.io/${{ github.repository }}/ros2-ubuntu
           tags: type=raw,value=${{ matrix.os_version }}-${{ matrix.arch }}
 
       - name: Build and publish Docker image
@@ -78,8 +78,6 @@ jobs:
             os_version: noble
           - ros2_version: humble
             os_version: jammy
-          - ros2_version: humble
-            os_version: focal
 
     runs-on: 'ubuntu-latest'
     name: Build ${{ matrix.ros2_version }} in ubuntu:${{ matrix.os_version }} from ${{ matrix.type }} (${{ matrix.arch }})
@@ -122,7 +120,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            IMAGE_BASE=ghcr.io/${{ env.REPO_LOWER }}/ros2-ubuntu-base:${{ matrix.os_version }}-${{ matrix.arch }}
+            IMAGE_BASE=ghcr.io/${{ env.REPO_LOWER }}/ros2-ubuntu:${{ matrix.os_version }}-${{ matrix.arch }}
             ROS2_VERSION=${{ matrix.ros2_version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
