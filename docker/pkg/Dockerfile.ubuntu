@@ -1,24 +1,8 @@
-ARG BASE_IMAGE_VERSION=jammy
-FROM ubuntu:${BASE_IMAGE_VERSION}
+ARG IMAGE_BASE=jammy
+FROM ubuntu:${IMAGE_BASE}
 
 ARG ROS2_VERSION=kilted
 ENV ROS2_VERSION=${ROS2_VERSION}
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install locales -y \
-&& locale-gen en_US en_US.UTF-8 \
-&& update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
-&& export LANG=en_US.UTF-8
-
-RUN apt-get install software-properties-common -y \
-&& add-apt-repository -y universe 
-
-RUN apt-get update && apt-get install -y curl tmux \
-&& ROS_APT_SOURCE_VERSION=$(curl -s https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F "tag_name" | awk -F'"' '{print $4}') \
-&& UBUNTU_CODE=$(. /etc/os-release && echo ${UBUNTU_CODENAME:-${VERSION_CODENAME}}) \
-&& curl -L -o /tmp/ros2-apt-source.deb "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.${UBUNTU_CODE}_all.deb" \
-&& dpkg -i /tmp/ros2-apt-source.deb \
-|| (echo "Download failed. Check if version $ROS_APT_SOURCE_VERSION exists for $UBUNTU_CODE" && exit 1) \
-&& rm /tmp/ros2-apt-source.deb
 
 RUN apt-get update && apt-get install ros-dev-tools -y\
     && apt-get update && apt-get upgrade -y \
