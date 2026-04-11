@@ -5,6 +5,9 @@ set -e
 ROS2_VERSION="kilted"
 
 apt-get update && apt-get install -y \
+    python3-flake8-blind-except \
+    python3-flake8-class-newline \
+    python3-flake8-deprecated \
     python3-mypy \
     python3-pip \
     python3-pytest \
@@ -25,7 +28,7 @@ apt-get upgrade -y
 cd ~/ros_${ROS2_VERSION}
 rosdep init
 rosdep update
-rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-7.3.0 urdfdom_headers"
+rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
 
 cd ~/ros_${ROS2_VERSION}
 colcon build --symlink-install
