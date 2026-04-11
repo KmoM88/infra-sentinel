@@ -108,7 +108,8 @@ jobs:
         uses: docker/metadata-action@v6.0.0
         with:
           images: ghcr.io/${{ github.repository }}/ros2-ubuntu
-          tags: type=raw,value=${{ matrix.os_version }}-${{ matrix.ros2_version }}-${{ matrix.arch }}
+          tags: type=raw,value=${{ matrix.os_version }}-${{ matrix.ros2_version }}-${{ matrix.arch }}-${{ matrix.type }}
+
 
       - name: Build and publish Docker image
         uses: docker/build-push-action@v7.1.0
