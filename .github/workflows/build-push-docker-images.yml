@@ -40,6 +40,30 @@ jobs:
             type: pkg
             arch: amd64
             runner: ubuntu-latest
+          - os: ubuntu
+            os_version: noble
+            ros2_version: kilted
+            type: pkg
+            arch: arm64
+            runner: ubuntu-latest
+          - os: ubuntu
+            os_version: noble
+            ros2_version: jazzy
+            type: pkg
+            arch: arm64
+            runner: ubuntu-latest
+          - os: ubuntu
+            os_version: noble
+            ros2_version: rolling
+            type: pkg
+            arch: arm64
+            runner: ubuntu-latest
+          - os: ubuntu
+            os_version: jammy
+            ros2_version: humble
+            type: pkg
+            arch: arm64
+            runner: ubuntu-latest
 
     runs-on: ${{ matrix.runner }}
     name: Build ${{ matrix.os }}/${{ matrix.os_version }} from ${{ matrix.type }} | ${{ matrix.ros2_version }} (${{ matrix.arch }})
@@ -74,6 +98,7 @@ jobs:
           context: .
           file: ./docker/${{ matrix.type }}/Dockerfile.${{ matrix.os }}
           push: true
+          platforms: linux/${{ matrix.arch }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
