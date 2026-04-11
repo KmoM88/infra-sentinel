@@ -60,27 +60,28 @@ jobs:
           cache-to: type=gha,mode=max
 
 
-  # build-and-push-ubuntu:
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       ros2_version: [kilted, jazzy, rolling, humble]
-  #       arch: [amd64, arm64]
-  #       type: [pkg, source]
-  #       os: [ubuntu]
+  build-and-push-ubuntu-versions:
+    strategy:
+      fail-fast: false
+      matrix:
+        ros2_version: [kilted, jazzy, rolling, humble]
+        arch: [amd64, arm64]
+        type: [pkg]
+  
+        include:
+          - ros2_version: kilted
+            os_version: noble
+          - ros2_version: jazzy
+            os_version: noble
+          - ros2_version: rolling
+            os_version: noble
+          - ros2_version: humble
+            os_version: jammy
+          - ros2_version: humble
+            os_version: focal
 
-  #       include:
-  #         - ros2_version: kilted
-  #           os_version: noble
-  #         - ros2_version: jazzy
-  #           os_version: noble
-  #         - ros2_version: rolling
-  #           os_version: noble
-  #         - ros2_version: humble
-  #           os_version: jammy
-
-  #   runs-on: 'ubuntu-latest'
-  #   name: Build ${{ matrix.ros2_version }} in ${{ matrix.os }}:${{ matrix.os_version }} from ${{ matrix.type }} (${{ matrix.arch }})
+    runs-on: 'ubuntu-latest'
+    name: Build ${{ matrix.ros2_version }} in ubuntu:${{ matrix.os_version }} from ${{ matrix.type }} (${{ matrix.arch }})
 
   #   steps:
   #     - name: Checkout repository
