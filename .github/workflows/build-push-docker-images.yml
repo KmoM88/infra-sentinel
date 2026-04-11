@@ -34,6 +34,12 @@ jobs:
             type: pkg
             arch: amd64
             runner: ubuntu-latest
+          - os: ubuntu
+            os_version: jammy
+            ros2_version: humble
+            type: pkg
+            arch: amd64
+            runner: ubuntu-latest
           # - os: ubuntu
           #   os_version: jammy
           #   ros2_version: humble
@@ -51,7 +57,7 @@ jobs:
           #   runner: ubuntu-latest
 
     runs-on: ${{ matrix.runner }}
-    name: Build ${{ matrix.os }}/${{ matrix.os_version }} | ROS2-${{ matrix.ros2_version }} (${{ matrix.arch }})
+    name: Build ${{ matrix.os }}/${{ matrix.os_version }} from ${{ matrix.type }} | ${{ matrix.ros2_version }} (${{ matrix.arch }})
 
     steps:
       - name: Checkout repository
