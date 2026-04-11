@@ -61,6 +61,7 @@ jobs:
 
 
   build-and-push-ubuntu-versions:
+    needs: build-and-push-ubuntu-base
     strategy:
       fail-fast: false
       matrix:
