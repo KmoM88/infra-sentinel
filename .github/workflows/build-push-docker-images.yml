@@ -18,7 +18,7 @@ jobs:
         include:
           - os: ubuntu
             os_version: noble
-            ros2_version: rolling
+            ros2_version: kilted
             type: pkg
             arch: amd64
             runner: ubuntu-latest
@@ -37,20 +37,6 @@ jobs:
           #   ros2_version: humble
           #   arch: arm64
           #   runner: ubuntu-latest
-
-          # # === Compilación para RHEL (UBI) ===
-          # - os: rhel
-          #   os_version: ubi9
-          #   ros2_version: humble
-          #   arch: amd64
-          #   runner: ubuntu-latest
-
-          # # === Compilación para Windows ===
-          # - os: windows
-          #   os_version: ltsc2022
-          #   ros2_version: humble
-          #   arch: amd64
-          #   runner: windows-latest
 
     runs-on: ${{ matrix.runner }}
     name: Build ${{ matrix.os }}/${{ matrix.os_version }} | ROS2-${{ matrix.ros2_version }} (${{ matrix.arch }})
@@ -79,18 +65,16 @@ jobs:
           images: ghcr.io/${{ github.repository_owner }}/${{ github.repository }}/ROS2-${{ matrix.type }}-${{ matrix.os }}
           tags: type=raw,value=${{ matrix.os_version }}-${{ matrix.ros2_version }}-${{ matrix.arch }}
 
-      # - name: Construir y publicar la imagen Docker
-      #   if: matrix.os != 'macos'
-      #   uses: docker/build-push-action@v5
-      #   with:
-      #     context: .
-      #     file: ./docker/${{ matrix.os }}.Dockerfile
-      #     platforms: ${{ (matrix.os == 'windows' && 'windows/amd64') || 'linux/amd64,linux/arm64' }}
-      #     push: true
-      #     tags: ${{ steps.meta.outputs.tags }}
-      #     labels: ${{ steps.meta.outputs.labels }}
-      #     build-args: |
-      #       BASE_IMAGE_VERSION=${{ matrix.os_version }}
-      #       ROS2_VERSION=${{ matrix.ros2_version }}
-      #     cache-from: type=gha
-      #     cache-to: type=gha,mode=max
+      - name: Construir y publicar la imagen Docker
+        uses: docker/build-push-action@v7.1.0
+        with:
+          context: .
+          file: ./docker/${{ matrix.type }}/Dockerfile.${{ matrix.os }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BASE_IMAGE_VERSION=${{ matrix.os_version }}
+            ROS2_VERSION=${{ matrix.ros2_version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
