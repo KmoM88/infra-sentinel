@@ -88,6 +88,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6.0.2
 
+      - name: Normalize Repository Name
+        run: |
+          echo "REPO_LOWER=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
+
       - name: Set up QEMU for multi-architecture builds
         uses: docker/setup-qemu-action@v4.0.0
 
@@ -118,7 +122,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            IMAGE_BASE=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.source'] }}-base:${{ matrix.os_version }}-${{ matrix.arch }}
+            IMAGE_BASE=ghcr.io/${{ env.REPO_LOWER }}/ros2-ubuntu-base:${{ matrix.os_version }}-${{ matrix.arch }}
             ROS2_VERSION=${{ matrix.ros2_version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
