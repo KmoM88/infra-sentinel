@@ -17,7 +17,7 @@ jobs:
       matrix:
         ros2_version: [kilted, jazzy, rolling, humble]
         arch: [amd64, arm64]
-        type: [pkg]
+        type: [pkg, source]
         os: [ubuntu]
 
         include:
