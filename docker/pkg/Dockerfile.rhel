@@ -5,8 +5,11 @@ ARG ROS2_VERSION=kilted
 ENV ROS2_VERSION=${ROS2_VERSION}
 
 RUN dnf update -y && dnf upgrade -y
-RUN dnf install -y 'dnf-command(config-manager)' && \
-    dnf config-manager --set-enabled ubi-9-codeready-builder-rpms
+RUN dnf install -y 'dnf-command(config-manager)'
+RUN dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+RUN dnf config-manager --set-enabled ubi-9-codeready-builder-rpms
+RUN dnf config-manager --set-enabled ubi-9-appstream-rpms
+RUN dnf makecache
 RUN dnf install -y ros-${ROS2_VERSION}-desktop \
 	&& dnf clean all
 
