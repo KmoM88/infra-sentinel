@@ -9,6 +9,7 @@ RUN dnf install -y 'dnf-command(config-manager)' epel-release
 RUN dnf config-manager --set-enabled ubi-9-codeready-builder-rpms
 RUN dnf config-manager --set-enabled ubi-9-appstream-rpms
 RUN dnf config-manager --add-repo https://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/
+RUN dnf config-manager --add-repo https://mirror.stream.centos.org/9-stream/CRB/x86_64/os/
 RUN rpm --import https://www.centos.org/keys/RPM-GPG-KEY-CentOS-Official
 RUN dnf makecache
 RUN dnf install -y ros-${ROS2_VERSION}-desktop \
