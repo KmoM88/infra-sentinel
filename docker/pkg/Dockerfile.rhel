@@ -4,17 +4,6 @@ FROM ${IMAGE_BASE}
 ARG ROS2_VERSION=kilted
 ENV ROS2_VERSION=${ROS2_VERSION}
 
-RUN dnf update -y && dnf upgrade -y
-RUN dnf install -y 'dnf-command(config-manager)' epel-release
-RUN dnf config-manager --set-enabled ubi-9-codeready-builder-rpms
-RUN dnf config-manager --set-enabled ubi-9-appstream-rpms
-RUN dnf config-manager --add-repo https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/
-RUN dnf config-manager --add-repo https://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/
-RUN dnf config-manager --add-repo https://mirror.stream.centos.org/9-stream/CRB/x86_64/os/
-RUN rpm --import https://www.centos.org/keys/RPM-GPG-KEY-CentOS-Official
-RUN dnf makecache
-RUN rpm -e --nodeps openssl-fips-provider-so || true
-RUN dnf update -y --allowerasing
 RUN dnf install -y --allowerasing ros-${ROS2_VERSION}-desktop \
 	&& dnf clean all
 
