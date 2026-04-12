@@ -1,0 +1,14 @@
+ARG IMAGE_BASE=9
+FROM ${IMAGE_BASE}
+
+ARG ROS2_VERSION=kilted
+ENV ROS2_VERSION=${ROS2_VERSION}
+
+RUN dnf update
+RUN dnf install -y ros-rolling-desktop \
+	&& dnf clean all
+
+RUN echo "source /opt/ros/${ROS2_VERSION}/setup.bash" >> /etc/bash.bashrc
+
+ENTRYPOINT ["/bin/bash", "-c", "source /opt/ros/${ROS2_VERSION}/setup.bash && \"$@\"", "--"]
+CMD ["/bin/bash"]
