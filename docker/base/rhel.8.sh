@@ -14,4 +14,4 @@ rpm --import https://www.centos.org/keys/RPM-GPG-KEY-CentOS-Official
 dnf clean all
 dnf makecache
 rpm -e --nodeps openssl-fips-provider-so || true
-dnf update -y --allowerasing
+dnf update -y --allowerasing --exclude=redhat-release* --exclude=ubi-release*
