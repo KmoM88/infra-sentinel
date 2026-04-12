@@ -31,6 +31,7 @@ dnf config-manager --add-repo https://mirror.stream.centos.org/9-stream/BaseOS/x
 dnf config-manager --add-repo https://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/
 dnf config-manager --add-repo https://mirror.stream.centos.org/9-stream/CRB/x86_64/os/
 rpm --import https://www.centos.org/keys/RPM-GPG-KEY-CentOS-Official
+dnf clean all
 dnf makecache
 rpm -e --nodeps openssl-fips-provider-so || true
 dnf update -y --allowerasing
