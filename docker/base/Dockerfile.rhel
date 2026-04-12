@@ -1,5 +1,5 @@
 ARG BASE_IMAGE_VERSION=9
-FROM rhel:ubi${BASE_IMAGE_VERSION}
+FROM redhat:ubi${BASE_IMAGE_VERSION}
 
 RUN dnf install -y langpacks-en glibc-langpack-en
 
