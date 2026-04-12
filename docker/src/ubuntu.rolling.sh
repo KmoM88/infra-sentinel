@@ -12,8 +12,10 @@ apt-get update && apt-get install -y \
     python3-pytest-rerunfailures \
     python3-pytest-runner \
     python3-pytest-timeout \
-    python3-pyqt6 \
+    python3-pyqtbuild \
+    python3-sipbuild \
     pyqt6-dev \
+    python3-pyqt6 \
     python3-pyqt6.sip \
     python3-sip-dev \
     qt6-base-dev \
