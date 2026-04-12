@@ -159,7 +159,7 @@ jobs:
       matrix:
         ros2_version: [kilted, jazzy, rolling, humble]
         arch: [amd64]
-        type: [pkg, src]
+        type: [pkg]
   
         include:
           - ros2_version: kilted
