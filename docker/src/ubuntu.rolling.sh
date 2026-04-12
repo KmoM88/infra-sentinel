@@ -23,7 +23,7 @@ apt-get upgrade -y
 cd ~/ros_${ROS2_VERSION}
 rosdep init
 rosdep update
-rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-7.3.0 urdfdom_headers"
+rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-7.7.0 urdfdom_headers"
 
 cd ~/ros_${ROS2_VERSION}
 colcon build --symlink-install
