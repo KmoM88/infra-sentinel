@@ -4,7 +4,7 @@ FROM ${IMAGE_BASE}
 ARG ROS2_VERSION=kilted
 ENV ROS2_VERSION=${ROS2_VERSION}
 
-RUN dnf update
+RUN dnf update -y
 RUN dnf install -y ros-${ROS2_VERSION}-desktop \
 	&& dnf clean all
 
