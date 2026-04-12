@@ -17,8 +17,6 @@ apt-get update && apt-get install -y \
     python3-pyqt6.sip \
     python3-sip-dev \
     qt6-base-dev \
-    qt6-core-dev \
-    qt6-gui-dev \
     ros-dev-tools
 
 mkdir -p ~/ros_${ROS2_VERSION}/src
