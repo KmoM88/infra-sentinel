@@ -1,7 +1,7 @@
 ARG BASE_IMAGE_VERSION=9
-ENV BASE_IMAGE_VERSION=${BASE_IMAGE_VERSION}
 FROM registry.access.redhat.com/ubi${BASE_IMAGE_VERSION}/ubi:latest
-
+ARG BASE_IMAGE_VERSION
+ENV BASE_IMAGE_VERSION=${BASE_IMAGE_VERSION}
 RUN dnf install -y langpacks-en glibc-langpack-en
 
 RUN dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm \
