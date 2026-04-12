@@ -199,20 +199,20 @@ jobs:
         id: meta
         uses: docker/metadata-action@v6.0.0
         with:
-          images: ghcr.io/${{ github.repository }}/ros2-ubuntu
+          images: ghcr.io/${{ github.repository }}/ros2-rhel
           tags: type=raw,value=${{ matrix.os_version }}-${{ matrix.ros2_version }}-${{ matrix.arch }}-${{ matrix.type }}
 
       - name: Build and publish Docker image
         uses: docker/build-push-action@v7.1.0
         with:
           context: .
-          file: ./docker/${{ matrix.type }}/Dockerfile.ubuntu
+          file: ./docker/${{ matrix.type }}/Dockerfile.rhel
           push: true
           platforms: linux/${{ matrix.arch }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            IMAGE_BASE=ghcr.io/${{ env.REPO_LOWER }}/ros2-ubuntu:${{ matrix.os_version }}-${{ matrix.arch }}
+            IMAGE_BASE=ghcr.io/${{ env.REPO_LOWER }}/ros2-rhel:${{ matrix.os_version }}-${{ matrix.arch }}
             ROS2_VERSION=${{ matrix.ros2_version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

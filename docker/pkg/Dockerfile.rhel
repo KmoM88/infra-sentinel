@@ -5,7 +5,7 @@ ARG ROS2_VERSION=kilted
 ENV ROS2_VERSION=${ROS2_VERSION}
 
 RUN dnf update
-RUN dnf install -y ros-rolling-desktop \
+RUN dnf install -y ros-${ROS2_VERSION}-desktop \
 	&& dnf clean all
 
 RUN echo "source /opt/ros/${ROS2_VERSION}/setup.bash" >> /etc/bash.bashrc
