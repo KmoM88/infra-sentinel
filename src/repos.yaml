@@ -45,6 +45,7 @@ repos:
   - gazebo-release/gz_cmake_vendor
   - gazebo-release/gz_math_vendor
   - gazebo-release/gz_utils_vendor
+  - openrobotics/gz_oci_images
   - osrf/buildfarm-tools
   - osrf/createrepo-agent
   - osrf/docker_images
