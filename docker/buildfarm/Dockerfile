@@ -7,5 +7,4 @@ RUN apt-get update && apt-get upgrade \
 	python3-pip \
 	python3-venv \
 	python3-empy \
-	python3-jenkinsapi \
-	python3-rosdistro
+	python3-jenkinsapi
