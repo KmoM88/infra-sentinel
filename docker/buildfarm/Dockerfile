@@ -8,3 +8,5 @@ RUN apt-get update && apt-get upgrade \
 
 RUN pip3 install --no-cache-dir --break-system-packages \
 	empy jenkinsapi rosdistro ros_buildfarm
+
+COPY jenkins.ini ~/.buildfarm/jenkins.ini
