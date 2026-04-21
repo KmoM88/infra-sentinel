@@ -32,6 +32,22 @@ services:
     networks:
       - jenkins_network
 
+  jenkins-agent-arm64:
+    image: jenkins/inbound-agent
+    privileged: true
+    user: root
+    container_name: jenkins-agent-arm64
+    depends_on:
+      - jenkins-master
+    environment:
+      - JENKINS_URL=http://192.168.30.100:8080
+      - JENKINS_SECRET=
+      - JENKINS_AGENT_NAME=docker-agent-amd64
+      - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+
   buildfarm-tools:
     image: ghcr.io/kmom88/infra-sentinel/ros2-buildfarm:main
     container_name: buildfarm-tools
