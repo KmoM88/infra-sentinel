@@ -1,4 +1,4 @@
-name: Build and Push Buildfarm Docker Images
+name: Build and Push Buildfarm Docker Image
 
 on:
   workflow_dispatch:
