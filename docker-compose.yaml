@@ -1,13 +1,13 @@
 version: '3.8'
 services:
-  jenkins:
+  jenkins-master:
     image: jenkins/jenkins:lts
     privileged: true
     user: root
     ports:
       - "8080:8080"
       - "50000:50000"
-    container_name: jenkins
+    container_name: jenkins-master
     volumes:
       - ./jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
@@ -19,17 +19,17 @@ services:
           cpus: '2'
           memory: '8G'
 
-  jenkins-agent:
+  jenkins-agent-amd64:
     image: jenkins/inbound-agent
     privileged: true
     user: root
-    container_name: jenkins-agent
+    container_name: jenkins-agent-amd64
     depends_on:
-      - jenkins
+      - jenkins-master
     environment:
-      - JENKINS_URL=http://jenkins:8080
-      - JENKINS_SECRET=
-      - JENKINS_AGENT_NAME=docker-agent
+      - JENKINS_URL=http://jenkins-master:8080
+      - JENKINS_SECRET=413192dbc51ecb6d4a0cad82af5a7ee35d6a0c22fc2ae3a7f9dd1f1d35654c40
+      - JENKINS_AGENT_NAME=docker-agent-amd64
       - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -39,7 +39,7 @@ services:
       resources:
         limits:
           cpus: '4'
-          memory: '16G'
+          memory: '8G'
 
 networks:
   jenkins_network:
