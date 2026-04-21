@@ -41,6 +41,13 @@ services:
           cpus: '4'
           memory: '8G'
 
+  buildfarm-tools:
+    image: ghcr.io/kmom88/infra-sentinel/ros2-buildfarm:main
+    container_name: buildfarm-tools
+    networks:
+      - jenkins_network
+    entrypoint: ["tail", "-f", "/dev/null"]
+
 networks:
   jenkins_network:
     driver: bridge
