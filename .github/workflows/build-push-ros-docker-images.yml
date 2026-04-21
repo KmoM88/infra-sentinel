@@ -1,4 +1,4 @@
-name: Build and Push Docker Images
+name: Build and Push ROS Docker Images
 
 on:
   workflow_dispatch:
