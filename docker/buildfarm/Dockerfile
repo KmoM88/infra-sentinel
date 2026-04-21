@@ -15,5 +15,5 @@ RUN pip3 install --no-cache-dir --break-system-packages \
 COPY docker/buildfarm/jenkins.ini ~/.buildfarm/jenkins.ini
 
 RUN git clone https://github.com/ros2/ci.git
-RUN git clone https://github.com/ros2/ros_buildfarm.git
-RUN git clone https://github.com/ros2/ros_buildfarm_config.git
+RUN git clone https://github.com/ros-infrastructure/ros_buildfarm.git
+RUN git clone https://github.com/ros-infrastructure/ros_buildfarm_config.git
