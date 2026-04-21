@@ -13,6 +13,33 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - jenkins_network
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '8G'
+
+  jenkins-agent:
+    image: jenkins/inbound-agent
+    privileged: true
+    user: root
+    container_name: jenkins-agent
+    depends_on:
+      - jenkins
+    environment:
+      - JENKINS_URL=http://jenkins:8080
+      - JENKINS_SECRET=
+      - JENKINS_AGENT_NAME=docker-agent
+      - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - jenkins_network
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: '16G'
 
 networks:
   jenkins_network:
