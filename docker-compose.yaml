@@ -41,7 +41,7 @@ services:
       - jenkins-master
     environment:
       - JENKINS_URL=http://192.168.30.100:8080
-      - JENKINS_SECRET=
+      - JENKINS_SECRET=f4b08728e73bbacd39f0ee262c078353449f766c85e46cbed9c42f8c3f41b9c2
       - JENKINS_AGENT_NAME=docker-agent-amd64
       - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
     volumes:
