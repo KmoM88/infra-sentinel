@@ -12,7 +12,7 @@ RUN apt-get update && apt-get upgrade -y \
 RUN pip3 install --no-cache-dir --break-system-packages \
 	empy jenkinsapi rosdistro ros_buildfarm
 
-COPY docker/buildfarm/jenkins.ini /.buildfarm/jenkins.ini
+COPY docker/buildfarm/jenkins.ini /root/.buildfarm/jenkins.ini
 
 RUN git clone https://github.com/ros2/ci.git
 RUN git clone https://github.com/ros-infrastructure/ros_buildfarm.git
