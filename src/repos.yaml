@@ -114,6 +114,7 @@ repos:
   - ros/pluginlib
   - ros/resource_retriever
   - ros/robot_state_publisher
+  - ros/rosdistro
   - ros/ros_environment
   - ros/ros_tutorials
   - ros/urdfdom
