@@ -3,7 +3,6 @@ FROM ubuntu:noble
 RUN apt-get update && apt-get upgrade \
 	&& apt-get install -y \
 	iputils-ping \
-	tmux \
 	git \
 	python3 \
 	python3-all \
