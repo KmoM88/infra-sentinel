@@ -39,14 +39,14 @@ jobs:
         id: meta
         uses: docker/metadata-action@v6.0.0
         with:
-          images: ghcr.io/${{ github.repository }}/ros2-rhel
+          images: ghcr.io/${{ github.repository }}/ros2-ubuntu
           tags: type=raw,value=${{ matrix.os_version }}-${{ matrix.arch }}
 
       - name: Build and publish Docker image
         uses: docker/build-push-action@v7.1.0
         with:
           context: .
-          file: ./docker/base/Dockerfile.rubuntu
+          file: ./docker/base/Dockerfile.ubuntu
           push: true
           platforms: linux/${{ matrix.arch }}
           tags: ${{ steps.meta.outputs.tags }}
