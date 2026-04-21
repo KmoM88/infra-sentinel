@@ -13,11 +13,6 @@ services:
       - /usr/bin/docker:/usr/bin/docker
     networks:
       - jenkins_network
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: '8G'
 
   jenkins-agent-amd64:
     image: jenkins/inbound-agent
@@ -36,11 +31,6 @@ services:
       - /usr/bin/docker:/usr/bin/docker
     networks:
       - jenkins_network
-    deploy:
-      resources:
-        limits:
-          cpus: '4'
-          memory: '8G'
 
   buildfarm-tools:
     image: ghcr.io/kmom88/infra-sentinel/ros2-buildfarm:main
