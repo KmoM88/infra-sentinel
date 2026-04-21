@@ -2,8 +2,6 @@ FROM ubuntu:noble
 
 RUN apt-get update && apt-get upgrade \
 	&& apt-get install -y \
-	tmux \
-	git \
 	python3 \
 	python3-all \
 	python3-pip
