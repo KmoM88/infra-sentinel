@@ -1,4 +1,4 @@
-FROM ubuntu:noble-slim
+FROM ubuntu:noble
 
 RUN apt-get update && apt-get upgrade \
 	&& apt-get install -y \
