@@ -10,6 +10,7 @@ services:
     volumes:
       - ./jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
     networks:
       - jenkins_network
     deploy:
@@ -32,6 +33,7 @@ services:
       - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
     networks:
       - jenkins_network
     deploy:
