@@ -1,7 +1,10 @@
 FROM ubuntu:noble
 
-RUN apt-get update && apt-get upgrade \
+RUN apt-get update && apt-get upgrade -y \
 	&& apt-get install -y \
+	iputils-ping \
+	tmux \
+	git \
 	python3 \
 	python3-all \
 	python3-pip
