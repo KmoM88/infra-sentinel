@@ -42,7 +42,7 @@ services:
       - jenkins-master
     environment:
       - JENKINS_URL=http://jenkins-master:8080
-      - JENKINS_SECRET=32a9e9dc91d7a9fff95c37aab3a20c766513ff301f4f64cf093f4120866a3efa
+      - JENKINS_SECRET=726303e02997a4d69edf309bc59b44acad85e1160d384e595ccbef4a7ad326cc
       - JENKINS_AGENT_NAME=docker-agent-amd64-repo
       - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
     restart: unless-stopped
