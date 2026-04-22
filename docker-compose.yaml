@@ -33,6 +33,25 @@ services:
     networks:
       - jenkins_network
 
+  jenkins-agent-amd64-repo:
+    image: ghcr.io/kmom88/infra-sentinel/jenkins-agent:amd64
+    privileged: true
+    user: root
+    container_name: jenkins-agent-amd64-repo
+    depends_on:
+      - jenkins-master
+    environment:
+      - JENKINS_URL=http://jenkins-master:8080
+      - JENKINS_SECRET=32a9e9dc91d7a9fff95c37aab3a20c766513ff301f4f64cf093f4120866a3efa
+      - JENKINS_AGENT_NAME=docker-agent-amd64-repo
+      - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - reprepro:/var/lib/reprepro
+    networks:
+      - jenkins_network
+
   jenkins-agent-arm64:
     image: ghcr.io/kmom88/infra-sentinel/jenkins-agent:arm64
     privileged: true
