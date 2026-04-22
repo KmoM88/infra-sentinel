@@ -15,7 +15,7 @@ services:
       - jenkins_network
 
   jenkins-agent-amd64:
-    image: jenkins/inbound-agent
+    image: ghcr.io/kmom88/infra-sentinel/jenkins-agent:amd64
     privileged: true
     user: root
     container_name: jenkins-agent-amd64
@@ -28,12 +28,11 @@ services:
       - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/bin/docker:/usr/bin/docker
     networks:
       - jenkins_network
 
   jenkins-agent-arm64:
-    image: jenkins/inbound-agent
+    image: ghcr.io/kmom88/infra-sentinel/jenkins-agent:arm64
     privileged: true
     user: root
     container_name: jenkins-agent-arm64
@@ -44,7 +43,6 @@ services:
       - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/bin/docker:/usr/bin/docker
     networks:
       - jenkins_network
 
