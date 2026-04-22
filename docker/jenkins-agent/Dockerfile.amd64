@@ -16,3 +16,5 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --break-system-packages pyyaml
+
+COPY docker/jenkins-agent/reprepro-updater.ini /root/.buildfarm/repreproo-updater.ini
