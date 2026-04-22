@@ -7,6 +7,7 @@ services:
       - "8080:8080"
       - "50000:50000"
     container_name: jenkins-master
+    restart: unless-stopped
     volumes:
       - ./jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
@@ -26,6 +27,7 @@ services:
       - JENKINS_SECRET=413192dbc51ecb6d4a0cad82af5a7ee35d6a0c22fc2ae3a7f9dd1f1d35654c40
       - JENKINS_AGENT_NAME=docker-agent-amd64
       - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
@@ -41,6 +43,7 @@ services:
       - JENKINS_SECRET=f4b08728e73bbacd39f0ee262c078353449f766c85e46cbed9c42f8c3f41b9c2
       - JENKINS_AGENT_NAME=docker-agent-arm64
       - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
